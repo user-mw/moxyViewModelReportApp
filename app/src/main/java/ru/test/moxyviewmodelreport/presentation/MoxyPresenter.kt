@@ -19,7 +19,16 @@ class MoxyPresenter(private val view: IMoxyView) {
             .subscribe(object : SingleObserver<Car?> {
                 override fun onSuccess(car: Car) {
                     view.hideProgress()
-                    view.changeText(car.brand)
+
+                    val textResult = """
+                        Brand: ${car.brand}
+                        Model: ${car.model}
+                        Color: ${car.color}
+                        Year: ${car.year}
+                        Cost: ${car.cost}
+                    """.trimIndent()
+
+                    view.changeText(textResult)
                 }
 
                 override fun onSubscribe(d: Disposable) {
