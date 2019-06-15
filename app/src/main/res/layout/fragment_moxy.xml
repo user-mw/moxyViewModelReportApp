@@ -3,9 +3,46 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
+    <EditText
+            android:id="@+id/enter_id_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_id_text"/>
+
     <TextView
-            android:id=""
-            android:layout_width="match_parent" 
-              android:layout_height="wrap_content"/>
+            android:id="@+id/moxy_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/default_moxy_title"
+            android:textSize="24sp"
+            android:textColor="@color/color_black"/>
+
+    <TextView
+            android:id="@+id/progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/default_loading_text"
+            android:textSize="24sp"
+            android:textColor="@color/color_black"
+            android:visibility="gone"/>
+
+    <TextView
+            android:id="@+id/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/loading_error_text"
+            android:textSize="24sp"
+            android:textColor="#BB3300"
+            android:visibility="gone"/>
+
+    <Button
+            android:id="@+id/download_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/download_text"/>
 
 </FrameLayout>
