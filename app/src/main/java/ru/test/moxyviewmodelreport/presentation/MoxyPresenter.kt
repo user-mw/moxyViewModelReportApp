@@ -1,5 +1,7 @@
 package ru.test.moxyviewmodelreport.presentation
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -8,7 +10,8 @@ import ru.test.moxyviewmodelreport.data.Car
 import ru.test.moxyviewmodelreport.domain.GetCarUseCaseImpl
 import ru.test.moxyviewmodelreport.domain.IGetCarUseCase
 
-class MoxyPresenter(private val view: IMoxyView) {
+@InjectViewState
+class MoxyPresenter : MvpPresenter<IMoxyView>() {
 
     private val getCarUseCase: IGetCarUseCase = GetCarUseCaseImpl()
 
@@ -18,7 +21,7 @@ class MoxyPresenter(private val view: IMoxyView) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<Car?> {
                 override fun onSuccess(car: Car) {
-                    view.hideProgress()
+                    viewState.hideProgress()
 
                     val textResult = """
                         Brand: ${car.brand}
@@ -28,17 +31,18 @@ class MoxyPresenter(private val view: IMoxyView) {
                         Cost: ${car.cost}
                     """.trimIndent()
 
-                    view.changeText(textResult)
+                    viewState.changeText(textResult)
+                    viewState.clearSearch()
                 }
 
                 override fun onSubscribe(d: Disposable) {
-                    view.hideError()
-                    view.showProgress()
+                    viewState.hideError()
+                    viewState.showProgress()
                 }
 
                 override fun onError(e: Throwable) {
-                    view.hideProgress()
-                    view.showError()
+                    viewState.hideProgress()
+                    viewState.showError()
                 }
             })
     }
