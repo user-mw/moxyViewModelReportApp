@@ -3,8 +3,7 @@ package ru.test.moxyviewmodelreport
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import kotlinx.android.synthetic.main.activity_main.*
-import ru.test.moxyviewmodelreport.ui.MoxyFragment
+import ru.test.moxyviewmodelreport.ui.CarFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            showScreen(MoxyFragment.newInstance())
+            showScreen(CarFragment.newInstance())
         }
     }
 

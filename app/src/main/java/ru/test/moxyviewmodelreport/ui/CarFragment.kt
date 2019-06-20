@@ -9,20 +9,20 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_moxy.*
 import ru.test.moxyviewmodelreport.R
-import ru.test.moxyviewmodelreport.presentation.IMoxyView
-import ru.test.moxyviewmodelreport.presentation.MoxyPresenter
+import ru.test.moxyviewmodelreport.presentation.ICarView
+import ru.test.moxyviewmodelreport.presentation.CarPresenter
 
-class MoxyFragment : MvpAppCompatFragment(), IMoxyView {
+class CarFragment : MvpAppCompatFragment(), ICarView {
 
     companion object {
-        fun newInstance(): MoxyFragment = MoxyFragment()
+        fun newInstance(): CarFragment = CarFragment()
     }
 
     @InjectPresenter
-    lateinit var presenter: MoxyPresenter
+    lateinit var presenter: CarPresenter
 
     @ProvidePresenter
-    fun providePresenter(): MoxyPresenter = MoxyPresenter()
+    fun providePresenter(): CarPresenter = CarPresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_moxy, container, false)
@@ -34,7 +34,7 @@ class MoxyFragment : MvpAppCompatFragment(), IMoxyView {
         }
     }
 
-    override fun changeText(newText: String) {
+    override fun showText(newText: String) {
         moxy_title.visibility = View.VISIBLE
         moxy_title.text = newText
     }

@@ -11,9 +11,10 @@ import ru.test.moxyviewmodelreport.domain.GetCarUseCaseImpl
 import ru.test.moxyviewmodelreport.domain.IGetCarUseCase
 
 @InjectViewState
-class MoxyPresenter : MvpPresenter<IMoxyView>() {
+class CarPresenter : MvpPresenter<ICarView>() {
 
     private val getCarUseCase: IGetCarUseCase = GetCarUseCaseImpl()
+    private val textResult: String = ""
 
     fun onClick(id: Int) {
         getCarUseCase(id)
@@ -31,7 +32,7 @@ class MoxyPresenter : MvpPresenter<IMoxyView>() {
                         Cost: ${car.cost}
                     """.trimIndent()
 
-                    viewState.changeText(textResult)
+                    viewState.showText(textResult)
                     viewState.clearSearch()
                 }
 
