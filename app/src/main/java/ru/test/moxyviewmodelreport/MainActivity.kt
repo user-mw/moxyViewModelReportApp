@@ -1,10 +1,10 @@
 package ru.test.moxyviewmodelreport
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import kotlinx.android.synthetic.main.activity_main.*
-import ru.test.moxyviewmodelreport.ui.MoxyFragment
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import ru.test.moxyviewmodelreport.ui.ViewModelFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            showScreen(MoxyFragment.newInstance())
+            showScreen(ViewModelFragment.newInstance())
         }
     }
 

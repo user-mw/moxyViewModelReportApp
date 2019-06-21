@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MoxyViewModelReport</string>
-    <string name="default_moxy_title">Screen with moxy</string>
+    <string name="default_viewmodel_title">Screen with ViewModel</string>
     <string name="download_text">Download</string>
     <string name="enter_id_text">Enter id</string>
     <string name="loading_error_text">Could not load a car</string>

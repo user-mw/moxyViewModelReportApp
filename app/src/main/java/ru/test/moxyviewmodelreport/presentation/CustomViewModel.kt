@@ -1,24 +1,36 @@
 package ru.test.moxyviewmodelreport.presentation
 
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ru.test.moxyviewmodelreport.data.Car
-import ru.test.moxyviewmodelreport.domain.GetCarUseCaseImpl
 import ru.test.moxyviewmodelreport.domain.IGetCarUseCase
 
-class MoxyPresenter(private val view: IMoxyView) {
+class CustomViewModel(private val getCarUseCase: IGetCarUseCase) : ViewModel() {
 
-    private val getCarUseCase: IGetCarUseCase = GetCarUseCaseImpl()
+    private val text: MutableLiveData<String> = MutableLiveData()
+    private val error: MutableLiveData<Boolean> = MutableLiveData()
+    private val loading: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun onClick(id: Int) {
+    val textTitle: MutableLiveData<String>
+        get() = text
+
+    val errorVisible: MutableLiveData<Boolean>
+        get() = error
+
+    val loadingVisible: MutableLiveData<Boolean>
+        get() = loading
+
+    fun loadCar(id: Int) {
         getCarUseCase(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<Car?> {
                 override fun onSuccess(car: Car) {
-                    view.hideProgress()
+                    loading.postValue(false)
 
                     val textResult = """
                         Brand: ${car.brand}
@@ -28,17 +40,17 @@ class MoxyPresenter(private val view: IMoxyView) {
                         Cost: ${car.cost}
                     """.trimIndent()
 
-                    view.changeText(textResult)
+                    text.postValue(textResult)
                 }
 
                 override fun onSubscribe(d: Disposable) {
-                    view.hideError()
-                    view.showProgress()
+                    error.postValue(false)
+                    loading.postValue(true)
                 }
 
                 override fun onError(e: Throwable) {
-                    view.hideProgress()
-                    view.showError()
+                    loading.postValue(false)
+                    error.postValue(true)
                 }
             })
     }

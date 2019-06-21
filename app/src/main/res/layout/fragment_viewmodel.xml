@@ -10,11 +10,11 @@
             android:hint="@string/enter_id_text"/>
 
     <TextView
-            android:id="@+id/moxy_title"
+            android:id="@+id/view_model_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/default_moxy_title"
+            android:text="@string/default_viewmodel_title"
             android:textSize="24sp"
             android:textColor="@color/color_black"/>
 
