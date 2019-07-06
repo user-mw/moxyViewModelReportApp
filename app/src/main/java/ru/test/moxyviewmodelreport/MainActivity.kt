@@ -1,10 +1,9 @@
 package ru.test.moxyviewmodelreport
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import ru.test.moxyviewmodelreport.ui.ViewModelFragment
+import ru.test.moxyviewmodelreport.ui.CarFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            showScreen(ViewModelFragment.newInstance())
+            showScreen(CarFragment.newInstance())
         }
     }
 
